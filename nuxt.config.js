@@ -1,6 +1,6 @@
-const config = require('config')
-const clone = require('clone') 
-const { join } = require('path')
+// const config = require('config')
+// const clone = require('clone') 
+// const { join } = require('path')
 const srcDir = 'src'
 const isDev = process.env.NODE_ENV !== 'production'
 
@@ -35,6 +35,7 @@ module.exports = {
                                 `./src/assets/sass/_variables.sass`,
                                 `./src/assets/sass/_mixins.sass`,
                                 `./src/assets/sass/fonts.sass`,
+                                `./src/assets/sass/main.sass`,
                             ]
                         }
                     }
@@ -56,7 +57,8 @@ module.exports = {
     head: {
         titleTemplate: 'Nuxt - %s',
         link: [
-            { rel: 'icon', type: 'image/x-icon', href: "favicon.ico" }
+            { rel: 'icon', type: 'image/x-icon', href: "favicon.ico" },
+            {rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto'}
           
         ],
         meta: [
@@ -65,7 +67,7 @@ module.exports = {
             { hid: 'description',  name: 'description', content: 'description'}
         ],
     },
-    css: [
+    css: [ `~/assets/sass/main.sass`,
     ],
     serverMiddleware: [
     ],
