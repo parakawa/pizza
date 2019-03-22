@@ -7,6 +7,7 @@
 				v-card.pa-3.card.mt-2
 					.card-img
 						img(src="../static/user.jpeg")
+					p(v-if="showMessage") Password o Contraseña incorrecto
 					.card-content.mt-2
 						v-text-field(v-model='email', :rules='emailRules', label='E-mail', required='')
 						v-text-field.my-3(
@@ -34,7 +35,8 @@ export default {
     data () {
       return {
         email: '',
-        show1: false,
+		show1: false,
+		showMessage: false,
         password: 'Password',
         rules: {
           required: value => !!value || 'Required.',
@@ -64,7 +66,7 @@ export default {
 			async submit() {
 				let response = await this.validateEmailandPass({email:this.email, pass:this.password})
 				if(response) this.$router.push('/dashboard')
-				else alert('wrong')
+				else this.showMessage = true;
 			}
 		},
 		computed:	{

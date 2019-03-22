@@ -9,7 +9,6 @@ export const mutations = {
 
 export const actions = {
     validateEmailandPass({ state, commit }, {email, pass}) {
-        debugger
         return state.email == email && state.pass == pass
     }
 }
