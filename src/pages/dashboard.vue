@@ -1,5 +1,9 @@
 <template lang="pug">
-	v-layout
-		.menu
-			.menu-header
+	h3 Hola	
 </template>
+<script>
+export default {
+	layout: 'Dashboard',
+}
+</script>
+
