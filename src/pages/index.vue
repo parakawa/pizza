@@ -9,14 +9,26 @@
 						img(src="../static/user.jpeg")
 					.card-content.mt-2
 						v-text-field(v-model='email', :rules='emailRules', label='E-mail', required='')
-						v-text-field.my-3(v-model='password', :append-icon="show1 ? 'visibility' : 'visibility_off'", :rules='[rules.required, rules.min]', :type="show1 ? 'text' : 'password'", name='input-10-1', label='Normal with hint text', hint='At least 8 characters', counter='', @click:append='show1 = !show1')
+						v-text-field.my-3(
+							v-model='password',
+							:append-icon="show1 ? 'visibility' : 'visibility_off'", 
+							:rules='[rules.required, rules.min]', :type="show1 ? 'text' : 'password'", 
+							name='input-10-1', 
+							label='Normal with hint text', 
+							hint='At least 8 characters', 
+							counter='', 
+							@click:append='show1 = !show1')
 					.card-actions
-						v-btn(color="info") Login
+						v-btn(color="info" :disabled="isComplete" @click="submit()") Login
 </template>
 
-<script>
+<script> 
+import { required, minLength, email } from 'vuelidate/lib/validators'
+import { mapState, mapActions } from 'vuex'
+
+
 export default { 
-    layout: 'Login',
+    layout: 'Login', 
     data () {
       return {
         email: '',
@@ -32,7 +44,33 @@ export default {
         v => /.+@.+/.test(v) || 'E-mail must be valid'
         ]
       }
-    }
+		},
+		validations: {
+			email: {
+				required,
+				email
+			},
+			password: {
+				required,
+			}
+		},
+		methods: {
+			...mapActions('login', [
+				'validateEmailandPass',
+				]
+			),
+			async submit() {
+				console.log(await this.validateEmailandPass(this.email, this.password));
+			}
+		},
+		computed:	{
+			isComplete() {
+				return this.$v.$invalid
+			},
+			Popup() {
+
+			},
+		}
   }
 </script>
 

@@ -1,6 +1,6 @@
-// const config = require('config')
-// const clone = require('clone') 
-// const { join } = require('path')
+const config = require('config')
+const clone = require('clone') 
+const { join } = require('path')
 const srcDir = 'src'
 const isDev = process.env.NODE_ENV !== 'production'
 
@@ -71,7 +71,7 @@ module.exports = {
     ],
     serverMiddleware: [
     ],
-    plugins: ['~/plugins/vuetify'],
+    plugins: ['~/plugins/vuetify', '~/plugins/vuelidate'],
     modules: [
     ]
 }
