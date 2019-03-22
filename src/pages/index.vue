@@ -19,7 +19,9 @@
 							counter='', 
 							@click:append='show1 = !show1')
 					.card-actions
-						v-btn(color="info" :disabled="isComplete" @click="submit()") Login
+						v-btn(:disabled="isComplete" @click="submit()") Login
+						//- router-link(to="/dashboard")
+						//- 	a /LOgin
 </template>
 
 <script> 
@@ -60,7 +62,9 @@ export default {
 				]
 			),
 			async submit() {
-				console.log(await this.validateEmailandPass(this.email, this.password));
+				let response = await this.validateEmailandPass({email:this.email, pass:this.password})
+				if(response) this.$router.push('/dashboard')
+				else alert('wrong')
 			}
 		},
 		computed:	{
