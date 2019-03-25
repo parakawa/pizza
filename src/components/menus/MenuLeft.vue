@@ -1,12 +1,12 @@
 <template lang="pug">
     v-layout(wrap='')
-        v-toolbar.v-menuHeader
+        v-toolbar.v-menuHeader(:class="{ 'menuHeader--sidebar-open': isActive}")
             v-toolbar-side-icon(@click.stop='toggleSidebar()')
             v-toolbar-title Dashboard
-        v-navigation-drawer.v-navigation(v-model='isActive',
+        v-navigation-drawer.v-navigation(
+            v-model='isActive',
             fixed
             :mobile-break-point="1904"
-            app
             touchless
             dark)
             .menuLeaftHeader
@@ -71,14 +71,19 @@
         },
         set (val) {
             this.$store.dispatch('dashboard/updateSidebar', { visible: val })
+            }
         }
-        }
-    },    
+    },  
     methods: {
         toggleSidebar(){
             this.$store.dispatch('dashboard/updateSidebar', { visible: !this.$store.state.dashboard.sidebar.visible })
             }
         },
+    mounted() {
+        this.$nextTick(function () {
+            console.log('esto',this.$route)
+        })
+    },  
   }
 </script>
 <style lang="sass">
@@ -86,6 +91,6 @@
     position: absolute
     top: 0
     left: 0
-.showMenuLeft
+.menuHeader--sidebar-open
     padding-left: 300px !important
 </style>
