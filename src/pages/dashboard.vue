@@ -1,4 +1,5 @@
 <template lang="pug">
+v-container(fluid)
 	v-layout.main(:class="{ 'main--sidebar-open': sidebarVisibility }")
 		v-flex.xs12.md6
 			v-card.mb-5
