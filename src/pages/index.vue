@@ -101,6 +101,7 @@ export default {
 	img
 		max-width: 200px
 	.card
+		max-width: 370px
 		min-width: 33vh
 	button
 		background-color: $color-secondary !important

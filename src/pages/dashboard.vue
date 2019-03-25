@@ -1,5 +1,4 @@
 <template lang="pug">
-	h3 Hola	
 </template>
 <script>
 export default {
